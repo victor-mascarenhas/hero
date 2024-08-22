@@ -1,14 +1,22 @@
 import { CharacterContext } from "./context";
-import { useFetchData } from "../hooks/useFetchData";
-import { usePagination } from "../hooks/usePagination";
 import { ProviderProps } from "./types";
+import { useLoading } from "../hooks/useLoading";
+import { useCharacter } from "../hooks/useCharacter";
+import { usePagination } from "../hooks/usePagination";
 
 export const CharacterProvider = ({ children }: ProviderProps) => {
-  const { data, isLoading } = useFetchData();
-  const { offset, limit, onPageChange, onTotalChange, total } = usePagination();
-  const pagination = { offset, limit, onPageChange, total, onTotalChange };
+  const charList = useCharacter();
+  const loading = useLoading();
+  const pagination = usePagination();
+
   return (
-    <CharacterContext.Provider value={{ data, isLoading, pagination }}>
+    <CharacterContext.Provider
+      value={{
+        charList,
+        loading,
+        pagination,
+      }}
+    >
       {children}
     </CharacterContext.Provider>
   );
