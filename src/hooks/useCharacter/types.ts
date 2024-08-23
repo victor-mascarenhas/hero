@@ -1,16 +1,21 @@
-type Image = {
+export type Image = {
   path: string;
   extension: string;
 };
 
-type ResourceList = {
+export type ResourceList = {
   available: number;
   returned: number;
   collectionURI: string;
-  items: [];
+  items: [
+    {
+      resourceURI: string;
+      name: string;
+    }
+  ];
 };
 
-type Url = {
+export type Url = {
   type: string;
   url: string;
 };

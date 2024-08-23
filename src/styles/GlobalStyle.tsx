@@ -7,7 +7,10 @@ export default createGlobalStyle`
     box-sizing: border-box;
   }
   body{
-    font-family: 'Montserrat', sans-serif;
     width: 100%;
+    overflow-y: auto;
 }
+  html{
+  overflow: hidden;
+  }
 `;
