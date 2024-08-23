@@ -3,4 +3,5 @@ export type paginationProps = {
   current: number;
   array: number[];
   pages: number;
+  isLoading: boolean;
 };

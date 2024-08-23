@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Character, ResourceList } from "../../hooks/useCharacter/types";
+import { useState } from "react";
 
 const MinorList = ({ itemList }: { itemList: ResourceList }) => {
   const slice = itemList.items.slice(0, 3);
@@ -15,12 +16,21 @@ const MinorList = ({ itemList }: { itemList: ResourceList }) => {
 };
 
 const CharList = ({ list }: { list: Character[] }) => {
+  const [size, setSize] = useState(window.innerWidth);
+  addEventListener("resize", () => {
+    setSize(window.innerWidth);
+  });
+  const mobile = size <= 768;
   return (
     <Container>
       <Titles>
         <p>Personagem</p>
-        <p>Séries</p>
-        <p>Eventos</p>
+        {!mobile && (
+          <>
+            <p>Séries</p>
+            <p>Eventos</p>
+          </>
+        )}
       </Titles>
       <List>
         {list.map((item, i) => (
@@ -33,8 +43,12 @@ const CharList = ({ list }: { list: Character[] }) => {
               />
               <h3>{item.name}</h3>
             </CharInfo>
-            <MinorList itemList={item.series} />
-            <MinorList itemList={item.events} />
+            {!mobile && (
+              <>
+                <MinorList itemList={item.series} />
+                <MinorList itemList={item.events} />
+              </>
+            )}
           </ListRow>
         ))}
       </List>
@@ -53,6 +67,12 @@ const Titles = styled.div`
     font-family: PT Sans;
     font-size: 12px;
     color: #8e8e8e;
+  }
+  @media (max-width: 768px) {
+    padding: 9px 96px;
+    p {
+      width: 100%;
+    }
   }
 `;
 
@@ -87,6 +107,11 @@ const ListRow = styled.div`
   justify-content: space-between;
   flex-direction: row;
   padding: 21px 24px;
+  @media (max-width: 768px) {
+    &:hover {
+      cursor: pointer;
+    }
+  }
 `;
 
 const CharInfo = styled.div`
@@ -96,11 +121,20 @@ const CharInfo = styled.div`
   justify-content: start;
   align-items: center;
   color: #555555;
-  font-size: 16px;
-  font-weight: 700;
-  font-family: PT Sans;
+
   img {
     border-radius: 4px;
+  }
+  h3 {
+    font-size: 16px;
+    font-weight: 700;
+    font-family: PT Sans;
+  }
+  @media (max-width: 768px) {
+    width: 100%;
+    h3 {
+      font-size: 14px;
+    }
   }
 `;
 

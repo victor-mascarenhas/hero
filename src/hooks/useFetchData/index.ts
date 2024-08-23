@@ -14,13 +14,14 @@ export const useFetchData = () => {
   const { onChangeCharList } = state.charList;
   const { limit, onTotalChange, offset } = state.pagination;
 
-  const getData = () => {
+  const getData = (name?: string) => {
+    let qs = `${baseURL}?ts=${time}&apikey=${publicKey}&hash=${hash}&offset=${offset}&limit=${limit}`;
+    if (name) {
+      qs = qs + `&name=${name}`;
+    }
     try {
-      console.log("fetching...");
       onChangeLoading(true);
-      fetch(
-        `${baseURL}?ts=${time}&apikey=${publicKey}&hash=${hash}&offset=${offset}&limit=${limit}`
-      )
+      fetch(qs)
         .then((response) => response.json())
         .then((response) => {
           onChangeCharList(response.data.results);
@@ -28,8 +29,10 @@ export const useFetchData = () => {
           onChangeLoading(false);
         });
     } catch (err) {
+      onChangeLoading(false);
       console.log(err);
     }
   };
+
   return { getData };
 };
