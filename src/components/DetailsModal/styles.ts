@@ -27,9 +27,10 @@ export const Detail = styled.div`
   color: black;
   height: fit-content;
   @media (max-width: 768px) {
-    top: 100%;
+    height: 100vh;
     width: 100%;
     padding: 4rem 2rem;
+    overflow: auto;
   }
 `;
 
@@ -69,6 +70,7 @@ export const Info = styled.div`
   @media (max-width: 768px) {
     text-align: center;
     img {
+      margin-right: 0px;
       margin-bottom: 24px;
       height: 100px;
       width: 100px;
@@ -85,7 +87,8 @@ export const CloseSection = styled.div`
   img {
     height: 40px;
     width: 40px;
-    float: right;
+    position: absolute;
+    right: 50px;
     cursor: pointer;
   }
 `;

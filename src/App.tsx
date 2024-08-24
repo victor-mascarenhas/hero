@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CharacterContext } from "./state/context";
 import { useFetchData } from "./hooks/useFetchData";
 import CharList from "./components/CharList";
@@ -15,7 +15,6 @@ function App() {
   const { charList, onChangeSelectedChar, onUpdateSelectedCharResources } =
     state.charData;
   const { getCharData, getOtherResource } = useFetchData();
-  const isFirstRun = useRef(true);
 
   const handleSingleCharDetails = (id: number) => {
     const [selectedChar] = charList.filter((char) => char.id === id);
@@ -33,12 +32,9 @@ function App() {
   };
 
   useEffect(() => {
-    if (!isFirstRun.current) {
-      (() => {
-        getCharData();
-      })();
-    }
-    isFirstRun.current = false;
+    return (() => {
+      getCharData();
+    })();
   }, [offset, getCharData]);
   return (
     <>
