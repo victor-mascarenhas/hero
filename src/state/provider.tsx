@@ -5,14 +5,14 @@ import { useCharacter } from "../hooks/useCharacter";
 import { usePagination } from "../hooks/usePagination";
 
 export const CharacterProvider = ({ children }: ProviderProps) => {
-  const charList = useCharacter();
+  const charData = useCharacter();
   const loading = useLoading();
   const pagination = usePagination();
 
   return (
     <CharacterContext.Provider
       value={{
-        charList,
+        charData,
         loading,
         pagination,
       }}

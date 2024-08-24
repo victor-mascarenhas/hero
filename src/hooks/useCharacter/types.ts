@@ -3,16 +3,16 @@ export type Image = {
   extension: string;
 };
 
+export type ResourceItem = {
+  resourceURI: string;
+  name: string;
+};
+
 export type ResourceList = {
   available: number;
   returned: number;
   collectionURI: string;
-  items: [
-    {
-      resourceURI: string;
-      name: string;
-    }
-  ];
+  items: ResourceItem[];
 };
 
 export type Url = {
@@ -32,4 +32,26 @@ export type Character = {
   stories: ResourceList;
   events: ResourceList;
   series: ResourceList;
+};
+
+export type Resources = "comics" | "stories" | "events" | "series";
+
+export type OtherResource = {
+  id: number;
+  title: string;
+  description: string;
+  thumbnail: Image;
+  images?: Image[];
+};
+
+export type CharResources = {
+  comics?: OtherResource[];
+  stories?: OtherResource[];
+  events?: OtherResource[];
+  series?: OtherResource[];
+};
+
+export type UpdateResourceProps = {
+  name: Resources;
+  resource: OtherResource[];
 };

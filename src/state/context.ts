@@ -2,7 +2,14 @@ import { createContext } from "react";
 import { CharacterState } from "./types";
 
 const initial = {
-  charList: { data: [], onChangeCharList: () => {} },
+  charData: {
+    charList: [],
+    onChangeCharList: () => {},
+    selectedChar: null,
+    onChangeSelectedChar: () => {},
+    selectedCharResources: null,
+    onUpdateSelectedCharResources: () => {},
+  },
   loading: {
     isLoading: false,
     onChangeLoading: () => {},

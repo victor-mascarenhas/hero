@@ -1,14 +1,22 @@
 import { ReactNode } from "react";
-import { Character } from "../hooks/useCharacter/types";
+import {
+  Character,
+  CharResources,
+  UpdateResourceProps,
+} from "../hooks/useCharacter/types";
 
 export type ProviderProps = {
   children?: ReactNode;
 };
 
 export type CharacterState = {
-  charList: {
-    data: Character[];
+  charData: {
+    charList: Character[];
     onChangeCharList: (arg: Character[]) => void;
+    selectedChar: Character | null;
+    onChangeSelectedChar: (arg: Character | null) => void;
+    selectedCharResources: CharResources | null;
+    onUpdateSelectedCharResources: (arg: UpdateResourceProps | null) => void;
   };
   loading: {
     isLoading: boolean;
