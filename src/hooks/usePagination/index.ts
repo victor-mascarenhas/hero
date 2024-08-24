@@ -6,7 +6,7 @@ const limit = 10;
 
 export const usePagination = () => {
   const [offset, setOffset] = useState(0);
-  const [total, setTotal] = useState(0); // mudar para zero
+  const [total, setTotal] = useState(0);
   const current = offset ? offset / limit + 1 : 1;
   const pages = Math.ceil(total / limit);
   const maxFirst = Math.max(pages - (maxNumBtns - 1), 1);
@@ -18,8 +18,8 @@ export const usePagination = () => {
   const onTotalChange = (total: number) => {
     setTotal(total);
   };
-  //RENOMEAR ARRAY
-  const array = Array.from({ length: Math.min(maxNumBtns, pages) }).map(
+
+  const numList = Array.from({ length: Math.min(maxNumBtns, pages) }).map(
     (_, i) => i + first
   );
   return {
@@ -29,7 +29,7 @@ export const usePagination = () => {
     total,
     pages,
     current,
-    array,
+    numList,
     limit,
   };
 };

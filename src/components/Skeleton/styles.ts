@@ -1,28 +1,11 @@
 import styled from "styled-components";
 
-export const Titles = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 9px 24px;
-  p {
-    text-align: start;
-    width: 33%;
-    font-family: PT Sans;
-    font-size: 12px;
-    color: #8e8e8e;
-  }
-`;
-
-export const Wrapper = styled.div`
-  max-height: 100%;
-
-  .skeleton {
-    background-color: #e0e0e0;
-    border-radius: 4px;
-    position: relative;
-    overflow: hidden;
-  }
-  .skeleton::before {
+const BaseSkeleton = styled.div`
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+  &::before {
     content: "";
     position: absolute;
     top: 0;
@@ -37,7 +20,6 @@ export const Wrapper = styled.div`
     );
     animation: loading 1.5s infinite;
   }
-
   @keyframes loading {
     0% {
       transform: translateX(-100%);
@@ -46,17 +28,19 @@ export const Wrapper = styled.div`
       transform: translateX(100%);
     }
   }
+`;
 
-  .skeleton-text {
-    height: 20px;
-    width: 60%;
-  }
-
-  .skeleton-avatar {
-    height: 48px;
-    width: 48px;
-    border-radius: 4px;
-  }
+export const SquareSkeleton = styled(BaseSkeleton)`
+  height: 48px;
+  width: 48px;
+`;
+export const LineSkeleton = styled(BaseSkeleton)`
+  height: 20px;
+  width: 60%;
+`;
+export const RectangularSkeleton = styled(BaseSkeleton)`
+  width: 150px;
+  height: 200px;
 `;
 
 export const List = styled.ul`
@@ -97,4 +81,22 @@ export const MinorList = styled.ul`
   li {
     width: 50%;
   }
+`;
+
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  width: 200px;
+  height: 280px;
+  gap: 4px;
+`;
+export const BtnWrapper = styled.div`
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 100%;
 `;

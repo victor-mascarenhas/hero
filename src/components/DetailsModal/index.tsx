@@ -3,11 +3,13 @@ import * as S from "./styles";
 import { CharacterContext } from "../../state/context";
 import Carousel, { ContentType } from "../Carousel";
 import { OtherResource } from "../../hooks/useCharacter/types";
-import styled from "styled-components";
+import { SkeletonCarousel } from "../Skeleton";
+import CloseIcon from "../../assets/icons8-excluir-30.png";
 
 const DetailsModal = ({ closeModal }: { closeModal: () => void }) => {
   const state = useContext(CharacterContext);
   const { selectedChar, selectedCharResources } = state.charData;
+  const { isLoading } = state.loading;
 
   const parseCarousel = (items: OtherResource[]) => {
     return items.map((item) => {
@@ -23,10 +25,10 @@ const DetailsModal = ({ closeModal }: { closeModal: () => void }) => {
     <>
       <S.CardShadow>
         <S.Detail>
-          <CloseSection>
-            <div onClick={closeModal} />
-          </CloseSection>
-          <Info>
+          <S.CloseSection>
+            <img src={CloseIcon} onClick={closeModal} />
+          </S.CloseSection>
+          <S.Info>
             <img
               src={`${selectedChar?.thumbnail.path}.${selectedChar?.thumbnail.extension}`}
               height={70}
@@ -36,33 +38,39 @@ const DetailsModal = ({ closeModal }: { closeModal: () => void }) => {
               <h1>{selectedChar?.name}</h1>
               <p>{selectedChar?.description}</p>
             </div>
-          </Info>
-          <CarouselWrapper>
-            <ContentWrapper>
+          </S.Info>
+          <S.CarouselWrapper>
+            <S.CarouselSection>
               <h2>Comics</h2>
-              {selectedCharResources?.comics && (
+              {!isLoading && selectedCharResources?.comics ? (
                 <Carousel
                   content={parseCarousel(selectedCharResources.comics)}
                 />
+              ) : (
+                <SkeletonCarousel />
               )}
-            </ContentWrapper>
-            <ContentWrapper>
+            </S.CarouselSection>
+            <S.CarouselSection>
               <h2>Events</h2>
-              {selectedCharResources?.events && (
+              {!isLoading && selectedCharResources?.events ? (
                 <Carousel
                   content={parseCarousel(selectedCharResources.events)}
                 />
+              ) : (
+                <SkeletonCarousel />
               )}
-            </ContentWrapper>
-            <ContentWrapper>
+            </S.CarouselSection>
+            <S.CarouselSection>
               <h2>Series</h2>
-              {selectedCharResources?.series && (
+              {!isLoading && selectedCharResources?.series ? (
                 <Carousel
                   content={parseCarousel(selectedCharResources.series)}
                 />
+              ) : (
+                <SkeletonCarousel />
               )}
-            </ContentWrapper>
-          </CarouselWrapper>
+            </S.CarouselSection>
+          </S.CarouselWrapper>
         </S.Detail>
       </S.CardShadow>
     </>
@@ -70,61 +78,3 @@ const DetailsModal = ({ closeModal }: { closeModal: () => void }) => {
 };
 
 export default DetailsModal;
-
-const CarouselWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  h2 {
-    font-family: PT Sans;
-    color: #555555;
-    margin-bottom: 14px;
-  }
-  @media (max-width: 768px) {
-    flex-direction: column;
-    gap: 24px;
-  }
-`;
-
-const ContentWrapper = styled.div`
-  display: grid;
-  justify-items: center;
-  align-items: center;
-`;
-
-const Info = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: start;
-  font-family: PT Sans;
-  color: #555555;
-  margin-bottom: 24px;
-  img {
-    margin-right: 24px;
-    border-radius: 4px;
-  }
-
-  @media (max-width: 768px) {
-    text-align: center;
-    img {
-      margin-bottom: 24px;
-      height: 100px;
-      width: 100px;
-    }
-    align-items: center;
-    flex-direction: column;
-    margin-bottom: 48px;
-  }
-`;
-
-const CloseSection = styled.div`
-  height: 20px;
-  width: 100%;
-  div {
-    height: 20px;
-    width: 20px;
-    background-color: red;
-    float: right;
-    cursor: pointer;
-  }
-`;

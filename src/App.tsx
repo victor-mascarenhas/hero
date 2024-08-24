@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import GlobalStyle from "./styles/GlobalStyle";
 import { useContext, useEffect, useRef, useState } from "react";
 import { CharacterContext } from "./state/context";
 import { useFetchData } from "./hooks/useFetchData";
@@ -7,7 +6,6 @@ import CharList from "./components/CharList";
 import Header from "./components/Header";
 import SearchInput from "./components/SearchInput";
 import Footer from "./components/Footer";
-import SkeletonList from "./components/Skeleton";
 import DetailsModal from "./components/DetailsModal";
 
 function App() {
@@ -19,7 +17,7 @@ function App() {
   const { getCharData, getOtherResource } = useFetchData();
   const isFirstRun = useRef(true);
 
-  const handleClick = (id: number) => {
+  const handleSingleCharDetails = (id: number) => {
     const [selectedChar] = charList.filter((char) => char.id === id);
     onChangeSelectedChar(selectedChar);
     getOtherResource({ charId: id, resource: "comics" });
@@ -44,43 +42,27 @@ function App() {
   }, [offset, getCharData]);
   return (
     <>
-      <GlobalStyle />
-      <Main>
-        <Header />
-        {showModal && <DetailsModal closeModal={handleCloseModal} />}
+      <Header />
+      {showModal && <DetailsModal closeModal={handleCloseModal} />}
+      <ExternalWrapper>
         <Content>
-          <ExternalWrapper>
-            <SearchInput />
-            {state?.loading.isLoading ? (
-              <SkeletonList />
-            ) : (
-              <>
-                <CharList list={charList} handleClick={handleClick} />
-              </>
-            )}
-          </ExternalWrapper>
+          <SearchInput />
+          <CharList list={charList} handleClick={handleSingleCharDetails} />
         </Content>
-        <Footer />
-      </Main>
+      </ExternalWrapper>
+      <Footer />
     </>
   );
 }
 
 export default App;
 
-const Main = styled.main`
-  color: black;
-  max-width: 100vw;
-  width: 100vw;
-  height: auto;
-`;
-
-const ExternalWrapper = styled.div`
+const Content = styled.div`
   padding: 64px 8% 24px 8%;
   background-color: #e5e5e5;
   min-height: 100%;
 `;
 
-const Content = styled.div`
+const ExternalWrapper = styled.div`
   height: calc(100vh - 90px);
 `;

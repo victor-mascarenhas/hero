@@ -6,13 +6,13 @@ import * as S from "./styles";
 
 const SearchInput = () => {
   const [textInput, setTextInput] = useState("");
-  const { getData } = useFetchData();
-  const inputHandler = (e) => {
+  const { getCharData } = useFetchData();
+  const inputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTextInput(e.target.value);
   };
-  const submitSearch = (e) => {
+  const submitSearch = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-    getData(textInput);
+    getCharData(textInput);
     setTextInput("");
   };
   return (

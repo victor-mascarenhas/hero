@@ -7,16 +7,16 @@ import useResize from "../../hooks/useResize";
 
 const Footer = () => {
   const state = useContext(CharacterContext);
-  const { pages, current, array, onPageChange } = state.pagination;
+  const { pages, current, numList, onPageChange } = state.pagination;
   const { isLoading } = state.loading;
   const { isMobile } = useResize();
-  const arr = isMobile ? array.slice(0, 3) : array;
+  const list = isMobile ? numList.slice(0, 3) : numList;
   return (
     <S.FooterBg>
       <Nav
         onPageChange={onPageChange}
         current={current}
-        array={arr}
+        numList={list}
         pages={pages}
         isLoading={isLoading}
       />

@@ -5,11 +5,12 @@ import DoubleLeftIcon from "../../assets/icons8-duplo-para-a-esquerda-64.png";
 import DoubleRightIcon from "../../assets/icons8-duplo-para-a-direita-64.png";
 
 import * as S from "./styles";
+import { SquareSkeleton } from "../Skeleton/styles";
 
 const Nav = ({
   onPageChange,
   current,
-  array,
+  numList,
   pages,
   isLoading,
 }: paginationProps) => {
@@ -39,17 +40,15 @@ const Nav = ({
 
         {isLoading ? (
           <>
-            <div className="skeleton skeleton-avatar"></div>
-            <div className="skeleton skeleton-avatar"></div>
-            <div className="skeleton skeleton-avatar"></div>
+            {Array.from({ length: 3 }).map((_, i) => (
+              <SquareSkeleton key={i} />
+            ))}
           </>
         ) : (
-          array.map((page, i) => (
+          numList.map((page, i) => (
             <li key={i}>
               <S.PagBtn
-                className={
-                  page === current ? "pagination__item--active" : undefined
-                }
+                className={page === current ? "active" : undefined}
                 onClick={() => onPageChange(page)}
               >
                 {page}

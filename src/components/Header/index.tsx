@@ -5,7 +5,9 @@ import * as S from "./styles";
 const Header = () => {
   return (
     <S.HeaderBg>
-      <S.ObjIcon src={Logo} />
+      <a href="/">
+        <S.ObjIcon src={Logo} />
+      </a>
       <S.Candidate>
         <S.NameWrapper>
           <h2>Victor Mascarenhas</h2>

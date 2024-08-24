@@ -7,7 +7,7 @@ export const HeaderBg = styled.header`
   position: fixed;
   top: 0;
   left: 0;
-  background: #ffffff 0% 0% no-repeat padding-box;
+  background: ${(props) => props.theme.colors.white};
   padding: 21px 24px 19px 24px;
   height: 64px;
   width: 100%;
@@ -20,8 +20,8 @@ export const Candidate = styled.div`
   display: flex;
   flex-direction: row;
   gap: 16px;
-  color: #555555;
-  font-family: "PT Sans Caption";
+  color: ${(props) => props.theme.colors.darkSmoke};
+  font-family: ${(props) => props.theme.fonts.secondary};
   align-items: center;
   justify-content: center;
 `;
@@ -36,19 +36,19 @@ export const NameWrapper = styled.div`
   gap: 4px;
   h2 {
     text-align: left;
-    font-weight: 700;
-    font-size: 14px;
+    font-weight: ${(props) => props.theme.weight.bold};
+    font-size: ${(props) => props.theme.sizes.medium};
   }
   p {
-    font-size: 14px;
+    font-size: ${(props) => props.theme.sizes.medium};
   }
   @media (max-width: 768px) {
     flex-direction: column;
     h2 {
-      font-size: 12px;
+      font-size: ${(props) => props.theme.sizes.small};
     }
     p {
-      font-size: 12px;
+      font-size: ${(props) => props.theme.sizes.small};
     }
   }
 `;
@@ -56,15 +56,15 @@ export const NameWrapper = styled.div`
 export const CB = styled.div`
   display: flex;
   align-self: center;
-  background: #f5f5f5 0% 0% no-repeat padding-box;
+  background: ${(props) => props.theme.colors.snow};
   border-radius: 4px;
   width: 32px;
   height: 32px;
   align-items: center;
   justify-content: center;
-  font-weight: 700;
+  font-weight: ${(props) => props.theme.weight.bold};
   &:hover {
-    background-color: #555555;
-    color: #f5f5f5;
+    background-color: ${(props) => props.theme.colors.darkSmoke};
+    color: ${(props) => props.theme.colors.snow};
   }
 `;

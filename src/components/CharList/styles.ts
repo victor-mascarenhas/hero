@@ -7,9 +7,9 @@ export const Titles = styled.div`
   p {
     text-align: start;
     width: 33%;
-    font-family: PT Sans;
+    font-family: ${(props) => props.theme.fonts.main};
     font-size: 12px;
-    color: #8e8e8e;
+    color: ${(props) => props.theme.colors.smoke};
   }
   @media (max-width: 768px) {
     padding: 9px 96px;
@@ -17,19 +17,6 @@ export const Titles = styled.div`
       width: 100%;
     }
   }
-`;
-
-export const ListMinor = styled.ul`
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  justify-content: center;
-  width: 33%;
-  font-family: PT Sans;
-  font-size: 14px;
-  text-align: start;
-  color: #555555;
 `;
 
 export const List = styled.ul`
@@ -43,17 +30,16 @@ export const List = styled.ul`
 
 export const ListRow = styled.div`
   height: 88px;
-  background: #ffffff 0% 0% no-repeat padding-box;
+  background: ${(props) => props.theme.colors.white};
   box-shadow: 0px 0px 5px #00000033;
   border-radius: 4px;
   display: flex;
   justify-content: space-between;
   flex-direction: row;
   padding: 21px 24px;
-  @media (max-width: 768px) {
-    &:hover {
-      cursor: pointer;
-    }
+  cursor: pointer;
+  &:hover {
+    border: 1px solid ${(props) => props.theme.colors.darkSmoke};
   }
 `;
 
@@ -63,15 +49,15 @@ export const CharInfo = styled.div`
   gap: 24px;
   justify-content: start;
   align-items: center;
-  color: #555555;
+  color: ${(props) => props.theme.colors.darkSmoke};
 
   img {
     border-radius: 4px;
   }
   h3 {
-    font-size: 16px;
-    font-weight: 700;
-    font-family: PT Sans;
+    font-size: ${(props) => props.theme.sizes.large};
+    font-weight: ${(props) => props.theme.weight.bold};
+    font-family: ${(props) => props.theme.fonts.main};
   }
   @media (max-width: 768px) {
     width: 100%;
@@ -81,6 +67,6 @@ export const CharInfo = styled.div`
   }
 `;
 
-export const Container = styled.div`
+export const Wrapper = styled.div`
   max-height: 100%;
 `;

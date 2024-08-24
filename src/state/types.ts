@@ -30,7 +30,7 @@ export type CharacterState = {
     onTotalChange: (arg: number) => void;
     pages: number;
     current: number;
-    array: number[];
+    numList: number[];
     limit: number;
   };
 };

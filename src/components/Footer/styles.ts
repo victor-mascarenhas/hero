@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const FooterBg = styled.footer`
-  background: #ffffff 0% 0% no-repeat padding-box;
+  background: ${(props) => props.theme.colors.white};
   width: 100vw;
   height: 90px;
   position: fixed;

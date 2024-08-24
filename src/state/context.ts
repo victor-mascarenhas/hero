@@ -21,7 +21,7 @@ const initial = {
     onTotalChange: () => {},
     pages: 1,
     current: 1,
-    array: [],
+    numList: [],
     limit: 0,
   },
 };

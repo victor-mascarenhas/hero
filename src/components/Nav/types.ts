@@ -1,7 +1,7 @@
 export type paginationProps = {
   onPageChange: (arg: number) => void;
   current: number;
-  array: number[];
+  numList: number[];
   pages: number;
   isLoading: boolean;
 };

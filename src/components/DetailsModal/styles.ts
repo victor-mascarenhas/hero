@@ -32,3 +32,60 @@ export const Detail = styled.div`
     padding: 4rem 2rem;
   }
 `;
+
+export const CarouselWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  h2 {
+    font-family: ${(props) => props.theme.fonts.main};
+    color: ${(props) => props.theme.colors.darkSmoke};
+    margin-bottom: 14px;
+  }
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 24px;
+  }
+`;
+
+export const CarouselSection = styled.div`
+  display: grid;
+  justify-items: center;
+  align-items: center;
+`;
+
+export const Info = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  font-family: ${(props) => props.theme.fonts.main};
+  color: ${(props) => props.theme.colors.darkSmoke};
+  margin-bottom: 24px;
+  img {
+    margin-right: 24px;
+    border-radius: 4px;
+  }
+
+  @media (max-width: 768px) {
+    text-align: center;
+    img {
+      margin-bottom: 24px;
+      height: 100px;
+      width: 100px;
+    }
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 48px;
+  }
+`;
+
+export const CloseSection = styled.div`
+  height: 20px;
+  width: 100%;
+  img {
+    height: 40px;
+    width: 40px;
+    float: right;
+    cursor: pointer;
+  }
+`;
